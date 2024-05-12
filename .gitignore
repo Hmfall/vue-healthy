@@ -1,0 +1,5 @@
+/dist
+stats.html
+node_modules
+jsconfig.json
+.idea
