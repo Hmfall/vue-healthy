@@ -15,7 +15,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useCalendarStore } from '@/store/calendarStore';
-import MealSectionItem from '@/components/MealSectionItem.vue';
+import MealSectionItem from '@/components/MealSection/MealSectionItem.vue';
 import type { Meal } from '@/shared/types/calendar.types';
 
 const calendarStore = useCalendarStore();

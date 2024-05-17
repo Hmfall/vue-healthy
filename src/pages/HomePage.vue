@@ -6,6 +6,6 @@
 </template>
 
 <script setup lang="ts">
-import MealSection from '@/components/MealSection.vue';
+import MealSection from '@/components/MealSection/MealSection.vue';
 import SummarySection from '@/components/SummarySection.vue';
 </script>
