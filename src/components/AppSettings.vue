@@ -25,7 +25,7 @@
       >
         <v-btn
           class="w-50"
-          :prepend-icon="mdiWhiteBalanceSunny"
+          prepend-icon="$weatherBalanceSunny"
           value="light"
         >
           Светлая
@@ -33,7 +33,7 @@
 
         <v-btn
           class="w-50"
-          :prepend-icon="mdiWeatherNight"
+          prepend-icon="$weatherNight"
           value="dark"
         >
           Темная
@@ -45,7 +45,6 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { mdiWeatherNight, mdiWhiteBalanceSunny } from '@mdi/js';
 import { useThemeStore } from '@/store/themeStore';
 import UserInfoForm from '@/components/UserInfoForm.vue';
 

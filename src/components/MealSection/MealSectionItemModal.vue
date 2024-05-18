@@ -21,7 +21,7 @@
         hide-details
       >
         <template #prepend-inner>
-          <v-icon :icon="mdiMagnify" />
+          <v-icon icon="$magnify" />
         </template>
       </v-text-field>
     </v-card-item>
@@ -65,7 +65,7 @@
               <v-btn
                 variant="text"
                 color="primary"
-                :icon="mdiPlusCircle"
+                icon="$plusCircle"
                 @click="handleAddProductToMeal(item)"
               />
             </template>
@@ -90,7 +90,6 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { mdiMagnify, mdiPlusCircle } from '@mdi/js';
 import { useCalendarStore } from '@/store/calendarStore';
 import { useProductStore } from '@/store/pruductStore/pruductStore';
 import type { Meal, Product } from '@/shared/types';

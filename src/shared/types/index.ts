@@ -86,3 +86,5 @@ export type CaloriesСonsumptionRate = ConstEntity<string, string> & {
   description: string;
   status?: string;
 };
+
+export type AppNavigationItems = (ConstEntity<string, string> & { icon: string })[];

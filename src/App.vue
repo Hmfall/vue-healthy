@@ -17,14 +17,14 @@
         persistent
       >
         <v-card>
-          <v-card-item class="text-center">
+          <v-card-item class="text-center pb-0">
             <v-icon
               size="50"
-              :icon="mdiAccountCircleOutline"
+              icon="$account"
             />
           </v-card-item>
 
-          <v-card-item class="text-center">
+          <v-card-item class="text-center pt-2">
             <span>Привет! <br />Введите свои персональные данные</span>
           </v-card-item>
 
@@ -42,7 +42,6 @@
 
 <script setup lang="ts">
 import { computed, watch } from 'vue';
-import { mdiAccountCircleOutline } from '@mdi/js';
 import { appCalendarStore, useCalendarStore } from '@/store/calendarStore';
 import { useProductStore } from '@/store/pruductStore/pruductStore';
 import { useThemeStore } from '@/store/themeStore';

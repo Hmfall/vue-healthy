@@ -70,7 +70,7 @@
         <v-btn
           :type="isActiveEdit ? 'button' : 'submit'"
           :variant="isActiveEdit ? 'flat' : 'tonal'"
-          :prepend-icon="isActiveEdit ? mdiCheck : mdiPencil"
+          :prepend-icon="isActiveEdit ? '$complete' : '$edit'"
           class="mb-4"
           color="primary"
           :disabled="!isFormValid"
@@ -84,7 +84,7 @@
         <v-btn
           v-show="isActiveEdit"
           variant="tonal"
-          :prepend-icon="mdiClose"
+          prepend-icon="$close"
           class="mt-1"
           color="error"
           hide-details
@@ -100,7 +100,6 @@
 
 <script setup lang="ts">
 import { computed, reactive, ref } from 'vue';
-import { mdiCheck, mdiClose, mdiPencil } from '@mdi/js';
 import dayjs from 'dayjs';
 import { useCalendarStore } from '@/store/calendarStore';
 import { appUserStore, useUserStore } from '@/store/userStore';

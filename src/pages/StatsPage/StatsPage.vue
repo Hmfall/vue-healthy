@@ -29,7 +29,7 @@
         <v-btn
           variant="tonal"
           rounded
-          :icon="mdiFilterRemoveOutline"
+          icon="$filterRemove"
           @click="handleResetDateRange"
         />
       </div>
@@ -162,7 +162,6 @@
 
 <script setup lang="ts">
 import { computed, reactive, watch } from 'vue';
-import { mdiFilterRemoveOutline } from '@mdi/js';
 import {
   BarElement,
   CategoryScale,

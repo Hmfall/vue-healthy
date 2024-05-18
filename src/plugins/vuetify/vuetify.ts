@@ -1,9 +1,10 @@
 import { useI18n } from 'vue-i18n';
 import { createVuetify } from 'vuetify';
-import { aliases, mdi } from 'vuetify/iconsets/mdi-svg';
+import { mdi } from 'vuetify/iconsets/mdi-svg';
 import { createVueI18nAdapter } from 'vuetify/locale/adapters/vue-i18n';
 import colors from 'vuetify/util/colors';
-import i18n from './i18n';
+import i18n from '../i18n';
+import aliases from './icons';
 
 export default createVuetify({
   locale: {

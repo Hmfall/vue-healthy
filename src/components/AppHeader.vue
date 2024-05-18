@@ -7,7 +7,7 @@
       >
         <template #activator="{ props }">
           <v-btn
-            :icon="mdiMenu"
+            icon="$menu"
             variant="text"
             v-bind="props"
           />
@@ -32,7 +32,7 @@
         <template #activator="{ props }">
           <v-btn
             variant="text"
-            :icon="mdiCalendarMultiselectOutline"
+            icon="$calendar"
             v-bind="props"
           />
         </template>
@@ -54,7 +54,6 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
-import { mdiCalendarMultiselectOutline, mdiMenu } from '@mdi/js';
 import dayjs from 'dayjs';
 import { useCalendarStore } from '@/store/calendarStore';
 import AppSettings from '@/components/AppSettings.vue';

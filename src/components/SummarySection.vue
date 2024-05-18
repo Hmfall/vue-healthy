@@ -13,7 +13,7 @@
                 variant="tonal"
                 class="mb-1"
                 color="primary"
-                :icon="mdiFoodAppleOutline"
+                icon="$apple"
                 size="small"
               />
             </template>
@@ -66,7 +66,7 @@
                 variant="tonal"
                 class="mb-1"
                 color="secondary"
-                :icon="mdiBullseyeArrow"
+                icon="$bullseyeArrow"
                 size="small"
               />
             </template>
@@ -106,7 +106,6 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { mdiBullseyeArrow, mdiFoodAppleOutline } from '@mdi/js';
 import { storeToRefs } from 'pinia';
 import { useCalendarStore } from '@/store/calendarStore';
 

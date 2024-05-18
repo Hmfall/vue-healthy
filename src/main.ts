@@ -4,7 +4,7 @@ import isLeapYear from 'dayjs/plugin/isLeapYear';
 import i18n from '@/plugins/i18n';
 import pinia from '@/plugins/pinia';
 import { router } from '@/plugins/router';
-import vuetify from '@/plugins/vuetify';
+import vuetify from '@/plugins/vuetify/vuetify';
 import type { AppSetting } from '@/shared/types';
 import useStorage from '@/shared/utils/useStorage';
 import App from './App.vue';

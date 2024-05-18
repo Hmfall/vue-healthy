@@ -28,7 +28,7 @@
                     <template #append>
                       <v-btn
                         variant="text"
-                        :icon="mdiClose"
+                        icon="$close"
                         @click="isActive.value = false"
                       />
                     </template>
@@ -102,7 +102,7 @@
             <v-btn
               variant="tonal"
               color="primary"
-              :prepend-icon="mdiPlus"
+              prepend-icon="$plus"
               v-bind="activatorProps"
             >
               Добавить продукт
@@ -117,7 +117,7 @@
         v-model="searchQuery"
         class="mb-4"
         label="Поиск"
-        :prepend-inner-icon="mdiMagnify"
+        prepend-inner-icon="$magnify"
         hide-details
         single-line
       />
@@ -137,7 +137,6 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
-import { mdiClose, mdiMagnify, mdiPlus } from '@mdi/js';
 import { useProductStore } from '@/store/pruductStore/pruductStore';
 import type { Product } from '@/shared/types';
 

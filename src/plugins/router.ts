@@ -1,23 +1,20 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
-import CatalogPage from '@/pages/CatalogPage.vue';
-import HomePage from '@/pages/HomePage.vue';
-import StatsPage from '@/pages/StatsPage/StatsPage.vue';
 
 const routes: RouteRecordRaw[] = [
   {
     name: 'Home',
     path: '/',
-    component: HomePage,
+    component: () => import('@/pages/HomePage.vue'),
   },
   {
     name: 'Stats',
     path: '/stats',
-    component: StatsPage,
+    component: () => import('@/pages/StatsPage/StatsPage.vue'),
   },
   {
     name: 'Catalog',
     path: '/catalog',
-    component: CatalogPage,
+    component: () => import('@/pages/CatalogPage.vue'),
   },
 ];
 

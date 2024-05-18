@@ -23,7 +23,7 @@
             color="primary"
             icon
           >
-            <v-icon :icon="mdiPlusCircle" />
+            <v-icon icon="$plusCircle" />
 
             <v-dialog
               activator="parent"
@@ -66,7 +66,7 @@
               <v-icon
                 v-show="isActiveEdit"
                 class="ml-2 mr-2 cursor-pointer"
-                :icon="mdiMinusCircle"
+                icon="$minusCircle"
                 color="error"
                 @click="handleRemoveProductFromMeal(product)"
               />
@@ -105,13 +105,6 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
-import {
-  mdiMinusCircle,
-  mdiPlusCircle,
-  mdiWeatherSunny,
-  mdiWeatherSunset,
-  mdiWeatherSunsetUp,
-} from '@mdi/js';
 import { useCalendarStore } from '@/store/calendarStore';
 import MealSectionItemModal from '@/components/MealSection/MealSectionItemModal.vue';
 import type { Meal, MealValues, ProductPerMeal } from '@/shared/types';
@@ -149,15 +142,15 @@ watch(
 
 const mappedMealValues: Record<MealValues, { icon: string; color: string }> = {
   breakfast: {
-    icon: mdiWeatherSunsetUp,
+    icon: '$weatherSunUp',
     color: 'yellow-accent-4',
   },
   lunch: {
-    icon: mdiWeatherSunny,
+    icon: '$weatherSunny',
     color: 'light-blue-darken-3',
   },
   dinner: {
-    icon: mdiWeatherSunset,
+    icon: '$weatherSunSet',
     color: 'orange-darken-3',
   },
 };
