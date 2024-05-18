@@ -65,7 +65,7 @@
       />
     </template>
 
-    <template v-else-if="!isRetroactivelyEdit">
+    <template v-else>
       <div>
         <v-btn
           :type="isActiveEdit ? 'button' : 'submit'"
@@ -100,8 +100,6 @@
 
 <script setup lang="ts">
 import { computed, reactive, ref } from 'vue';
-import dayjs from 'dayjs';
-import { useCalendarStore } from '@/store/calendarStore';
 import { appUserStore, useUserStore } from '@/store/userStore';
 import { validationRules } from '@/shared/utils/validationRules';
 
@@ -116,17 +114,12 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const userStore = useUserStore();
-const calendarStore = useCalendarStore();
 
 const isFormValid = ref(false);
 const isActiveEdit = ref(false);
 const form = ref<HTMLFormElement | null>(null);
 const user = reactive({ ...userStore.user });
 
-// Функция редактивания пользовательких данных задним числом отключена
-const isRetroactivelyEdit = computed(() =>
-  dayjs(calendarStore.calendarDay.date).isBefore(dayjs(), 'day'),
-);
 const isDisabledInput = computed(() => !props.directEdit && !isActiveEdit.value);
 
 const handleReset = () => {

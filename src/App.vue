@@ -69,10 +69,10 @@ const isInvalidUserInfo = computed(() =>
 watch(
   () => userStore.user,
   () => {
-    // При изменении пользовательских данных происходит перерасчет кол-ва реком. калорий для текущей
+    // При изменении пользовательских данных происходит перерасчет кол-ва реком. калорий для сегодняшней
     // даты (для всех последующих дат будет использоваться пересчитанное кол-во калорий, более ранние
     // даты не затрагиваются)
-    calendarStore.calendarDay.recommendedCalories = userStore.recommendedCalories;
+    calendarStore.calendar[useAppDate()].recommendedCalories = userStore.recommendedCalories;
     appCalendarStore.set(calendarStore.calendar);
   },
 );
