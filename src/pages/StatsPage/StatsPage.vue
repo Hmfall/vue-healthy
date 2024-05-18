@@ -38,30 +38,14 @@
     <v-card-item>
       <div class="d-flex ga-3 flex-wrap">
         <v-btn
+          v-for="dateRange in dateRanges"
+          :key="dateRange.value"
           variant="tonal"
           density="comfortable"
           rounded
-          @click="setDateRange('week')"
+          @click="setDateRange(dateRange.value)"
         >
-          Неделя
-        </v-btn>
-
-        <v-btn
-          variant="tonal"
-          density="comfortable"
-          rounded
-          @click="setDateRange('twoWeeks')"
-        >
-          Две недели
-        </v-btn>
-
-        <v-btn
-          variant="tonal"
-          density="comfortable"
-          rounded
-          @click="setDateRange('month')"
-        >
-          Месяц
+          {{ dateRange.title }}
         </v-btn>
       </div>
     </v-card-item>
@@ -79,26 +63,14 @@
 
         <div class="d-flex flex-column">
           <div class="d-flex flex-wrap mb-2 ga-2">
-            <v-chip>
-              <v-tooltip>
-                <span>Значительный недостаток количества калорий.</span>
-
-                <template #activator="{ props }">
-                  <span
-                    v-bind="props"
-                    class="on-surface"
-                  >
-                    Недостаток
-                  </span>
-                </template>
-              </v-tooltip>
-            </v-chip>
-
-            <v-chip color="primary">
+            <v-chip
+              v-for="consumptionRate in caloriesСonsumptionRate"
+              :key="consumptionRate.value"
+              :color="consumptionRate.status"
+            >
               <v-tooltip>
                 <span>
-                  Недостаток калорий, не превышающий 3% от рекомендуемого<br />
-                  количества калорий находится в пределах нормы.
+                  {{ consumptionRate.description }}
                 </span>
 
                 <template #activator="{ props }">
@@ -106,22 +78,7 @@
                     v-bind="props"
                     class="on-surface"
                   >
-                    В пределах нормы <span class="text-caption">(не более 3%)</span>
-                  </span>
-                </template>
-              </v-tooltip>
-            </v-chip>
-
-            <v-chip color="error">
-              <v-tooltip>
-                <span>Превышение рекомендуемого количества калорий.</span>
-
-                <template #activator="{ props }">
-                  <span
-                    v-bind="props"
-                    class="on-surface"
-                  >
-                    Свыше нормы
+                    {{ consumptionRate.title }}
                   </span>
                 </template>
               </v-tooltip>
@@ -210,7 +167,6 @@ import {
   BarElement,
   CategoryScale,
   Chart as ChartJS,
-  type ChartOptions,
   Legend,
   LinearScale,
   LineElement,
@@ -224,8 +180,15 @@ import { Bar } from 'vue-chartjs';
 import { useDisplay } from 'vuetify';
 import { appSettingsStore } from '@/main';
 import { useCalendarStore } from '@/store/calendarStore';
-import type { CaloriesSummary, DateRange, SummaryPerDate } from '@/shared/types';
+import type { CaloriesSummary, DateRange, DateRangeVariant, SummaryPerDate } from '@/shared/types';
 import useAppDate from '@/shared/utils/useAppDate';
+import {
+  caloriesСonsumptionRate,
+  chartOptions,
+  dateRanges,
+  summaryDateRangeTableHeaders,
+  summaryTableHeaders,
+} from './consts';
 
 ChartJS.register(
   Title,
@@ -326,24 +289,23 @@ const generateDateRange = (dateRange: DateRange) => {
 };
 
 const getStatusColor = (calories: CaloriesSummary, options: { output: 'canvas' | 'template' }) => {
-  if (calories.usage > calories.recommended) {
-    return options.output === 'canvas' ? 'rgba(198, 40, 40, 0.2)' : 'error';
-  } else if (calories.usage === 0 && options.output !== 'canvas') {
+  const { usage, recommended } = calories;
+  const { output } = options;
+
+  if (usage > recommended) {
+    return output === 'canvas' ? 'rgba(198, 40, 40, 0.2)' : 'error';
+  } else if (usage === 0 && output !== 'canvas') {
     return 'transparent';
-  } else {
-    if (
-      calories.recommended &&
-      calories.usage &&
-      calories.recommended - calories.usage < Math.round((calories.recommended * 3) / 100)
-    ) {
-      return options.output === 'canvas' ? 'rgba(67, 160, 71, 0.2)' : 'primary';
-    } else {
-      return options.output === 'canvas' ? 'rgba(134, 134, 134, 0.4)' : undefined;
-    }
   }
+
+  if (recommended && usage && recommended - usage < Math.round((recommended * 3) / 100)) {
+    return output === 'canvas' ? 'rgba(67, 160, 71, 0.2)' : 'primary';
+  }
+
+  return output === 'canvas' ? 'rgba(134, 134, 134, 0.4)' : undefined;
 };
 
-const setDateRange = (range: 'week' | 'twoWeeks' | 'month') => {
+const setDateRange = (range: DateRangeVariant) => {
   const useInputDateFormat = (date: Dayjs) => dayjs(date).format('YYYY-MM-DD');
   const now = useInputDateFormat(dayjs());
 
@@ -364,72 +326,6 @@ const setDateRange = (range: 'week' | 'twoWeeks' | 'month') => {
 };
 
 watch(dateRange, () => appSettingsStore.set({ stats: dateRange }, { merge: true }));
-
-const chartOptions: ChartOptions<'bar'> = {
-  responsive: true,
-  scales: {
-    x: {
-      position: 'bottom',
-      border: {
-        width: 2,
-        color: 'rgba(67, 160, 71, 0.2)',
-      },
-    },
-    y: {
-      position: 'left',
-      border: {
-        width: 2,
-        color: 'rgba(67, 160, 71, 0.2)',
-      },
-      title: {
-        display: true,
-        text: 'Калории',
-        padding: {
-          bottom: 12,
-        },
-        font: {
-          size: 16,
-        },
-      },
-    },
-  },
-  plugins: {
-    legend: {
-      display: false,
-    },
-  },
-  elements: {
-    bar: {
-      borderRadius: 4,
-    },
-    line: {
-      borderColor: 'rgb(0, 102, 216, 0.4)',
-    },
-  },
-};
-
-const summaryTableHeaders = [
-  { key: 'title', title: '', sortable: false },
-  { key: 'calories', title: 'Калории (ккал)', sortable: false },
-  { key: 'proteins', title: 'Белки (г)', sortable: false },
-  { key: 'fats', title: 'Жиры (г)', sortable: false },
-  { key: 'carbs', title: 'Углеводы (г)', sortable: false },
-] as const;
-
-const summaryDateRangeTableHeaders = [
-  { key: 'date', title: 'Дата', minWidth: '120' },
-  {
-    title: 'Калории (ккал)',
-    align: 'center',
-    children: [
-      { value: 'calories.usage', title: 'Потребленные', sortable: true, maxWidth: '145' },
-      { value: 'calories.recommended', title: 'Рекомендуемые', sortable: true, maxWidth: '145' },
-    ],
-  },
-  { key: 'proteins', title: 'Белки (г)' },
-  { key: 'fats', title: 'Жиры (г)' },
-  { key: 'carbs', title: 'Углеводы (г)' },
-] as const;
 </script>
 
 <style scoped lang="scss">

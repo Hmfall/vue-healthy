@@ -74,3 +74,15 @@ export interface CaloriesSummary {
   usage: number;
   recommended: number;
 }
+
+export type DateRangeVariant = 'week' | 'twoWeeks' | 'month';
+
+export interface ConstEntity<V, T> {
+  value: V;
+  title?: T;
+}
+
+export type CaloriesСonsumptionRate = ConstEntity<string, string> & {
+  description: string;
+  status?: string;
+};
