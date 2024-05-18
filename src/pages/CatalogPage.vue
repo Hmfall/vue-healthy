@@ -139,6 +139,7 @@
 import { reactive, ref } from 'vue';
 import { useProductStore } from '@/store/pruductStore/pruductStore';
 import type { Product } from '@/shared/types';
+import { validationRules as rules } from '@/shared/utils/validationRules';
 
 const productStore = useProductStore();
 
@@ -161,18 +162,13 @@ const handleAddProduct = async () => {
     return;
   }
 
-  const { valid } = await form.value.validate();
+  await form.value.validate();
 
-  if (valid) {
+  if (isFormValid.value) {
     isSnackbarVisible.value = true;
     productStore.addProduct({ ...product });
     Object.assign(product, initialProduct);
   }
-};
-
-const rules = {
-  required: (v: any) => v !== '' || 'Обязательно для заполнения',
-  notNull: (v: any) => v > 0 || 'Некорректное значение',
 };
 
 const tableHeaders = [

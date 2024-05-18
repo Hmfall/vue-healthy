@@ -9,7 +9,7 @@
       v-model.number="user.age"
       label="Возраст"
       type="number"
-      :rules="[rules.required]"
+      :rules="rules.ageRules"
       :disabled="isDisabledInput"
       required
     />
@@ -18,7 +18,7 @@
       v-model.number="user.height"
       label="Рост"
       type="number"
-      :rules="[rules.required]"
+      :rules="rules.heightRules"
       :disabled="isDisabledInput"
       required
     />
@@ -28,7 +28,7 @@
       label="Вес"
       type="number"
       :step="0.1"
-      :rules="[rules.required]"
+      :rules="rules.weightRules"
       :disabled="isDisabledInput"
       required
     />
@@ -39,7 +39,7 @@
       :items="activityLevels"
       item-title="level"
       item-value="value"
-      :rules="[rules.required]"
+      :rules="[validationRules.required]"
       :disabled="isDisabledInput"
       required
     />
@@ -48,7 +48,7 @@
       v-if="!appUserStore.get()"
       v-model="user.gender"
       :items="genders"
-      :rules="[(v) => rules.required(v?.toString())]"
+      :rules="[validationRules.required]"
       label="Пол"
       required
     />
@@ -103,6 +103,7 @@ import { computed, reactive, ref } from 'vue';
 import dayjs from 'dayjs';
 import { useCalendarStore } from '@/store/calendarStore';
 import { appUserStore, useUserStore } from '@/store/userStore';
+import { validationRules } from '@/shared/utils/validationRules';
 
 interface Props {
   // Редактирование формы без активации режима редактирования
@@ -138,15 +139,26 @@ const updateUser = async () => {
     return;
   }
 
-  const { valid } = await form.value.validate();
+  await form.value.validate();
 
-  if (valid) {
+  if (isFormValid.value) {
     userStore.updateUser({ ...user });
   }
 };
 
 const rules = {
-  required: (v: any) => !!v || 'Обязательно для заполнения',
+  ageRules: [
+    validationRules.required,
+    (v: number) => (v >= 1 && v <= 100) || 'Допустимые значения в пределах от 1 до 100',
+  ],
+  heightRules: [
+    validationRules.required,
+    (v: number) => (v >= 40 && v <= 250) || 'Допустимые значения в пределах от 40 до 250',
+  ],
+  weightRules: [
+    validationRules.required,
+    (v: number) => (v >= 2 && v <= 600) || 'Допустимые значения в пределах от 2 до 600',
+  ],
 };
 
 const activityLevels = [
