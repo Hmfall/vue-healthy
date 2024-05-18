@@ -93,8 +93,7 @@ import { computed, ref } from 'vue';
 import { mdiMagnify, mdiPlusCircle } from '@mdi/js';
 import { useCalendarStore } from '@/store/calendarStore';
 import { useProductStore } from '@/store/pruductStore/pruductStore';
-import type { Meal } from '@/shared/types/calendar.types';
-import type { Product } from '@/shared/types/product.types';
+import type { Meal, Product } from '@/shared/types';
 
 interface Props {
   meal: Meal;

@@ -7,10 +7,11 @@ import type {
   Calendar,
   CalendarDay,
   MealValues,
+  Product,
   ProductPerMeal,
+  Summary,
   SummaryPerDate,
-} from '@/shared/types/calendar.types';
-import type { Product, Summary } from '@/shared/types/product.types';
+} from '@/shared/types';
 import { objectKeys } from '@/shared/types/utils';
 import useAppDate from '@/shared/utils/useAppDate';
 import useStorage from '@/shared/utils/useStorage';

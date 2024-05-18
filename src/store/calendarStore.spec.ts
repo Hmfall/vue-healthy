@@ -1,8 +1,7 @@
 import { createPinia, setActivePinia } from 'pinia';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { useCalendarStore } from '@/store/calendarStore';
-import type { CalendarDay, ProductPerMeal } from '@/shared/types/calendar.types';
-import type { Product } from '@/shared/types/product.types';
+import type { CalendarDay, Product, ProductPerMeal } from '@/shared/types';
 
 describe('Calendar Store', () => {
   beforeEach(() => {

@@ -1,4 +1,4 @@
-import type { Product, ProductDto } from '@/shared/types/product.types';
+import type { Product, ProductDto } from '@/shared/types';
 
 export default function mapProduct(dto: ProductDto): Product {
   return {

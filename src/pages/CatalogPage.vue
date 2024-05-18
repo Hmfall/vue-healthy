@@ -139,7 +139,7 @@
 import { reactive, ref } from 'vue';
 import { mdiClose, mdiMagnify, mdiPlus } from '@mdi/js';
 import { useProductStore } from '@/store/pruductStore/pruductStore';
-import type { Product } from '@/shared/types/product.types';
+import type { Product } from '@/shared/types';
 
 const productStore = useProductStore();
 

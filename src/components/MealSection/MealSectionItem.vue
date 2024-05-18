@@ -32,7 +32,7 @@
               <template v-slot:default="{ isActive }">
                 <MealSectionItemModal
                   :meal="props.meal"
-                  :caloriesPerMeal="caloriesPerMeal"
+                  :calories-per-meal="caloriesPerMeal"
                   @close="isActive.value = false"
                 />
               </template>
@@ -114,7 +114,7 @@ import {
 } from '@mdi/js';
 import { useCalendarStore } from '@/store/calendarStore';
 import MealSectionItemModal from '@/components/MealSection/MealSectionItemModal.vue';
-import type { Meal, MealValues, ProductPerMeal } from '@/shared/types/calendar.types';
+import type { Meal, MealValues, ProductPerMeal } from '@/shared/types';
 
 interface Props {
   meal: Meal;

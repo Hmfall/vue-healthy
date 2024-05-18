@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 import { useTheme } from 'vuetify';
-import type { AppSetting, Theme } from '@/shared/types/app.types';
+import type { AppSetting, Theme } from '@/shared/types';
 import useStorage from '@/shared/utils/useStorage';
 
 const appSettingStore = useStorage<AppSetting>('settings');

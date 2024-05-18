@@ -1,6 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import type { AppSetting } from '@/shared/types/app.types';
-import type { Product } from '@/shared/types/product.types';
+import type { AppSetting, Product } from '@/shared/types';
 import useStorage from '@/shared/utils/useStorage';
 
 describe('useStorage', () => {

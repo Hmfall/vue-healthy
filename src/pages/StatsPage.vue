@@ -97,7 +97,7 @@
             <v-chip color="primary">
               <v-tooltip>
                 <span>
-                  Недостаток калорий, не превышающий 3% от рекомендуемого<br />
+                  Недостаток калорий, не превышающий 3% от рекомендуемого<br >
                   количества калорий находится в пределах нормы.
                 </span>
 
@@ -224,7 +224,7 @@ import { Bar } from 'vue-chartjs';
 import { useDisplay } from 'vuetify';
 import { appSettingsStore } from '@/main';
 import { useCalendarStore } from '@/store/calendarStore';
-import type { CaloriesSummary, DateRange, SummaryPerDate } from '@/shared/types/calendar.types';
+import type { CaloriesSummary, DateRange, SummaryPerDate } from '@/shared/types';
 import useAppDate from '@/shared/utils/useAppDate';
 
 ChartJS.register(

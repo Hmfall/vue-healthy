@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import type { Product } from '@/shared/types/product.types';
+import type { Product } from '@/shared/types';
 import useStorage from '@/shared/utils/useStorage';
 import db from '../../../db.json';
 import mapProduct from './utils/mapProduct';

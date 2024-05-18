@@ -5,7 +5,7 @@ import i18n from '@/plugins/i18n';
 import pinia from '@/plugins/pinia';
 import { router } from '@/plugins/router';
 import vuetify from '@/plugins/vuetify';
-import type { AppSetting } from '@/shared/types/app.types';
+import type { AppSetting } from '@/shared/types';
 import useStorage from '@/shared/utils/useStorage';
 import App from './App.vue';
 import 'dayjs/locale/ru';
