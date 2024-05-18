@@ -17,7 +17,7 @@
       "prettier --write --ignore-unknown"
     ],
     "*.{ts,vue}": [
-      "npm run lint:fix",
+      "npm run lint",
       "vitest related --run --environment=jsdom"
     ]
   },
