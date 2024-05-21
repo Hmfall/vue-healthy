@@ -22,7 +22,7 @@ export const useProductStore = defineStore('product', {
       if (appProducts) {
         this.products = products.concat(appProducts).sort((a, b) => a.name.localeCompare(b.name));
       } else {
-        this.products = products;
+        this.products = products.sort((a, b) => a.name.localeCompare(b.name));
       }
     },
     addProduct(product: Product) {
