@@ -20,13 +20,13 @@ export const useProductStore = defineStore('product', {
       const appProducts = appProductStore.get();
 
       if (appProducts) {
-        this.products = [...products, ...appProducts];
+        this.products = products.concat(appProducts).sort((a, b) => a.name.localeCompare(b.name));
       } else {
         this.products = products;
       }
     },
     addProduct(product: Product) {
-      this.products.push(product);
+      this.products = this.products.concat(product).sort((a, b) => a.name.localeCompare(b.name));
       appProductStore.set(product, { merge: true, raw: true });
     },
   },
