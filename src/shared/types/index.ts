@@ -56,7 +56,7 @@ export interface Meals {
 
 export interface Meal {
   value: MealValues;
-  label: string;
+  title: string;
 }
 
 export type MealValues = keyof Meals;
@@ -77,14 +77,20 @@ export interface CaloriesSummary {
 
 export type DateRangeVariant = 'week' | 'twoWeeks' | 'month';
 
-export interface ConstEntity<V, T> {
-  value: V;
-  title?: T;
-}
-
-export type CaloriesСonsumptionRate = ConstEntity<string, string> & {
+export interface CaloriesСonsumptionRateItem {
+  value: string;
+  title: string;
   description: string;
   status?: string;
-};
+}
 
-export type AppNavigationItems = (ConstEntity<string, string> & { icon: string })[];
+export interface AppNavigationItem {
+  value: string;
+  title: string;
+  icon: string;
+}
+
+export interface DateRangeVariantItem {
+  value: DateRangeVariant;
+  title: string;
+}

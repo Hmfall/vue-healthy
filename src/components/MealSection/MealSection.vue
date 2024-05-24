@@ -30,15 +30,15 @@ watch(
 const meals: Meal[] = [
   {
     value: 'breakfast',
-    label: 'Завтрак',
+    title: 'Завтрак',
   },
   {
     value: 'lunch',
-    label: 'Обед',
+    title: 'Обед',
   },
   {
     value: 'dinner',
-    label: 'Ужин',
+    title: 'Ужин',
   },
 ];
 </script>

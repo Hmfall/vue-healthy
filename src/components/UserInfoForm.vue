@@ -37,7 +37,7 @@
       v-model.number="user.activity"
       label="Уровень активности"
       :items="activityLevels"
-      item-title="level"
+      item-title="title"
       item-value="value"
       :rules="[validationRules.required]"
       :disabled="isDisabledInput"
@@ -105,7 +105,7 @@ import { validationRules } from '@/shared/utils/validationRules';
 
 interface Props {
   // Редактирование формы без активации режима редактирования
-  // (по умолчанию - редактирование заблокированно)
+  // (по умолчанию - редактирование заблокировано)
   directEdit?: boolean;
 }
 
@@ -155,15 +155,15 @@ const rules = {
 };
 
 const activityLevels = [
-  { value: 1.2, level: 'Минимальная активность' },
-  { value: 1.375, level: 'Cлабый уровень активности' },
-  { value: 1.55, level: 'Умеренный уровень активности' },
-  { value: 1.7, level: 'Тяжелая или трудоемкая активность' },
-  { value: 1.9, level: 'Экстремальный уровень' },
+  { value: 1.2, title: 'Минимальная активность' },
+  { value: 1.375, title: 'Cлабый уровень активности' },
+  { value: 1.55, title: 'Умеренный уровень активности' },
+  { value: 1.7, title: 'Тяжелая или трудоемкая активность' },
+  { value: 1.9, title: 'Экстремальный уровень' },
 ];
 
 const genders = [
-  { title: 'Мужской', value: 0 },
-  { title: 'Женский', value: 1 },
+  { value: 0, title: 'Мужской' },
+  { value: 1, title: 'Женский' },
 ];
 </script>

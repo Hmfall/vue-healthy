@@ -38,14 +38,14 @@
     <v-card-item>
       <div class="d-flex ga-3 flex-wrap">
         <v-btn
-          v-for="dateRange in dateRanges"
-          :key="dateRange.value"
+          v-for="range in dateRanges"
+          :key="range.value"
           variant="tonal"
           density="comfortable"
           rounded
-          @click="setDateRange(dateRange.value)"
+          @click="setDateRange(range.value)"
         >
-          {{ dateRange.title }}
+          {{ range.title }}
         </v-btn>
       </div>
     </v-card-item>
@@ -64,7 +64,7 @@
         <div class="d-flex flex-column">
           <div class="d-flex flex-wrap mb-2 ga-2">
             <v-chip
-              v-for="consumptionRate in caloriesСonsumptionRate"
+              v-for="consumptionRate in caloriesСonsumptionRates"
               :key="consumptionRate.value"
               :color="consumptionRate.status"
             >
@@ -182,7 +182,7 @@ import { useCalendarStore } from '@/store/calendarStore';
 import type { CaloriesSummary, DateRange, DateRangeVariant, SummaryPerDate } from '@/shared/types';
 import useAppDate from '@/shared/utils/useAppDate';
 import {
-  caloriesСonsumptionRate,
+  caloriesСonsumptionRates,
   chartOptions,
   dateRanges,
   summaryDateRangeTableHeaders,
