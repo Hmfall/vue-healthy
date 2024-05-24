@@ -24,7 +24,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import type { AppNavigationItems } from '@/shared/types';
+import type { AppNavigationItem } from '@/shared/types';
 
 const route = useRoute();
 const router = useRouter();
@@ -33,7 +33,7 @@ const currentRoute = ref(route.name || 'Home');
 
 watch(currentRoute, () => router.push({ name: currentRoute.value }));
 
-const navigationItems: AppNavigationItems = [
+const navigationItems: AppNavigationItem[] = [
   {
     value: 'Home',
     title: 'Дневник',

@@ -1,7 +1,7 @@
 import type { ChartOptions } from 'chart.js';
-import type { ConstEntity, DateRangeVariant, CaloriesСonsumptionRate } from '@/shared/types';
+import type { CaloriesСonsumptionRateItem, DateRangeVariantItem } from '@/shared/types';
 
-export const dateRanges: ConstEntity<DateRangeVariant, string>[] = [
+export const dateRanges: DateRangeVariantItem[] = [
   {
     value: 'week',
     title: 'Неделя',
@@ -16,7 +16,7 @@ export const dateRanges: ConstEntity<DateRangeVariant, string>[] = [
   },
 ];
 
-export const caloriesСonsumptionRate: CaloriesСonsumptionRate[] = [
+export const caloriesСonsumptionRates: CaloriesСonsumptionRateItem[] = [
   {
     value: 'flaw',
     title: 'Недостаток',

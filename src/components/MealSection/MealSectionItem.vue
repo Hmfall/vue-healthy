@@ -13,7 +13,7 @@
           />
         </template>
 
-        <v-list-item-title class="text-h6">{{ props.meal.label }}</v-list-item-title>
+        <v-list-item-title class="text-h6">{{ props.meal.title }}</v-list-item-title>
 
         <v-list-item-subtitle>{{ Math.round(caloriesPerMeal) }} ккал</v-list-item-subtitle>
 
@@ -29,7 +29,7 @@
               activator="parent"
               max-width="600"
             >
-              <template v-slot:default="{ isActive }">
+              <template #default="{ isActive }">
                 <MealSectionItemModal
                   :meal="props.meal"
                   :calories-per-meal="caloriesPerMeal"
