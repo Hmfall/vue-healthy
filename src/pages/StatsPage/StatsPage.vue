@@ -131,7 +131,7 @@
             <td>
               <v-chip :color="getStatusColor(item.calories, { output: 'template' })">
                 <span class="on-surface">
-                  {{ item.calories.usage ? Math.round(item.calories.usage) : '—' }}
+                  {{ Math.round(item.calories.usage) || '—' }}
                 </span>
               </v-chip>
             </td>
@@ -150,9 +150,9 @@
                 </span>
               </v-chip>
             </td>
-            <td>{{ item.proteins ? item.proteins : '—' }}</td>
-            <td>{{ item.fats ? item.fats : '—' }}</td>
-            <td>{{ item.carbs ? item.carbs : '—' }}</td>
+            <td>{{ item.proteins || '—' }}</td>
+            <td>{{ item.fats || '—' }}</td>
+            <td>{{ item.carbs || '—' }}</td>
           </tr>
         </template>
       </v-data-table-virtual>
@@ -306,22 +306,20 @@ const getStatusColor = (calories: CaloriesSummary, options: { output: 'canvas' |
 
 const setDateRange = (range: DateRangeVariant) => {
   const useInputDateFormat = (date: Dayjs) => dayjs(date).format('YYYY-MM-DD');
-  const now = useInputDateFormat(dayjs());
 
   switch (range) {
     case 'week':
       dateRange.start = useInputDateFormat(dayjs().subtract(1, 'week').add(1, 'day'));
-      dateRange.end = now;
       break;
     case 'twoWeeks':
       dateRange.start = useInputDateFormat(dayjs().subtract(2, 'week').add(1, 'day'));
-      dateRange.end = now;
       break;
     case 'month':
       dateRange.start = useInputDateFormat(dayjs().subtract(1, 'month'));
-      dateRange.end = now;
       break;
   }
+
+  dateRange.end = useInputDateFormat(dayjs());
 };
 
 watch(dateRange, () => appSettingsStore.set({ stats: dateRange }, { merge: true }));

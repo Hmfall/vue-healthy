@@ -8,12 +8,12 @@
         <template #prepend>
           <v-icon
             size="50"
-            :icon="mappedMealValues[props.meal.value].icon"
-            :color="mappedMealValues[props.meal.value].color"
+            :icon="mealValues[meal.value].icon"
+            :color="mealValues[meal.value].color"
           />
         </template>
 
-        <v-list-item-title class="text-h6">{{ props.meal.title }}</v-list-item-title>
+        <v-list-item-title class="text-h6">{{ meal.title }}</v-list-item-title>
 
         <v-list-item-subtitle>{{ Math.round(caloriesPerMeal) }} ккал</v-list-item-subtitle>
 
@@ -31,7 +31,7 @@
             >
               <template #default="{ isActive }">
                 <MealSectionItemModal
-                  :meal="props.meal"
+                  :meal="meal"
                   :calories-per-meal="caloriesPerMeal"
                   @close="isActive.value = false"
                 />
@@ -106,8 +106,9 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
 import { useCalendarStore } from '@/store/calendarStore';
+import { mealValues } from '@/components/MealSection/consts';
 import MealSectionItemModal from '@/components/MealSection/MealSectionItemModal.vue';
-import type { Meal, MealValues, ProductPerMeal } from '@/shared/types';
+import type { Meal, ProductPerMeal } from '@/shared/types';
 
 interface Props {
   meal: Meal;
@@ -139,21 +140,6 @@ watch(
     }
   },
 );
-
-const mappedMealValues: Record<MealValues, { icon: string; color: string }> = {
-  breakfast: {
-    icon: '$weatherSunUp',
-    color: 'yellow-accent-4',
-  },
-  lunch: {
-    icon: '$weatherSunny',
-    color: 'light-blue-darken-3',
-  },
-  dinner: {
-    icon: '$weatherSunSet',
-    color: 'orange-darken-3',
-  },
-};
 </script>
 
 <style scoped lang="scss">

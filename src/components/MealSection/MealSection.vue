@@ -15,8 +15,8 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useCalendarStore } from '@/store/calendarStore';
+import { meals } from '@/components/MealSection/consts';
 import MealSectionItem from '@/components/MealSection/MealSectionItem.vue';
-import type { Meal } from '@/shared/types';
 
 const calendarStore = useCalendarStore();
 
@@ -26,19 +26,4 @@ watch(
   () => calendarStore.calendarDay,
   () => (panel.value = []),
 );
-
-const meals: Meal[] = [
-  {
-    value: 'breakfast',
-    title: 'Завтрак',
-  },
-  {
-    value: 'lunch',
-    title: 'Обед',
-  },
-  {
-    value: 'dinner',
-    title: 'Ужин',
-  },
-];
 </script>

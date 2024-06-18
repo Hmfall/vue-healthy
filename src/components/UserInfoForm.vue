@@ -134,9 +134,7 @@ const updateUser = async () => {
 
   await form.value.validate();
 
-  if (isFormValid.value) {
-    userStore.updateUser({ ...user });
-  }
+  userStore.updateUser({ ...user });
 };
 
 const rules = {

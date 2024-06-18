@@ -77,3 +77,7 @@ watch(
   },
 );
 </script>
+
+<style lang="scss">
+@import '@/shared/styles/main.scss';
+</style>

@@ -81,22 +81,13 @@
       </v-row>
 
       <v-row>
-        <v-col>
+        <v-col
+          v-for="item in nutrients"
+          :key="item.title"
+        >
           <v-list-item class="d-flex justify-center text-center pa-0">
-            <v-list-item class="text-h6">Углеводы</v-list-item>
-            <v-list-item-subtitle>{{ calendarDay.summary.carbs }} г</v-list-item-subtitle>
-          </v-list-item>
-        </v-col>
-        <v-col>
-          <v-list-item class="d-flex justify-center text-center pa-0">
-            <v-list-item class="text-h6">Белки</v-list-item>
-            <v-list-item-subtitle>{{ calendarDay.summary.proteins }} г</v-list-item-subtitle>
-          </v-list-item>
-        </v-col>
-        <v-col>
-          <v-list-item class="d-flex justify-center text-center pa-0">
-            <v-list-item class="text-h6">Жиры</v-list-item>
-            <v-list-item-subtitle>{{ calendarDay.summary.fats }} г</v-list-item-subtitle>
+            <v-list-item class="text-h6">{{ item.title }}</v-list-item>
+            <v-list-item-subtitle>{{ item.value }} г</v-list-item-subtitle>
           </v-list-item>
         </v-col>
       </v-row>
@@ -117,4 +108,19 @@ const remainingKcal = computed(() => calendarDay.value.recommendedCalories - usa
 const remainingKcalRatio = computed(
   () => 100 - ((recommendedKcal.value - usageKcal.value) / recommendedKcal.value) * 100,
 );
+
+const nutrients = computed(() => [
+  {
+    title: 'Углеводы',
+    value: calendarDay.value.summary.carbs,
+  },
+  {
+    title: 'Белки',
+    value: calendarDay.value.summary.proteins,
+  },
+  {
+    title: 'Жиры',
+    value: calendarDay.value.summary.fats,
+  },
+]);
 </script>

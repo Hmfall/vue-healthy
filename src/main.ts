@@ -9,7 +9,6 @@ import type { AppSetting } from '@/shared/types';
 import useStorage from '@/shared/utils/useStorage';
 import App from './App.vue';
 import 'dayjs/locale/ru';
-import '@/shared/styles/main.scss';
 
 export const appSettingsStore = useStorage<AppSetting>('settings', sessionStorage);
 
@@ -18,9 +17,6 @@ const app = createApp(App);
 dayjs.extend(isLeapYear);
 dayjs.locale('ru');
 
-app.use(router);
-app.use(pinia);
-app.use(i18n);
-app.use(vuetify);
+app.use(router).use(pinia).use(i18n).use(vuetify);
 
 router.isReady().then(() => app.mount('#app'));
